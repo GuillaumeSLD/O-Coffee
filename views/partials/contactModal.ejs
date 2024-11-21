@@ -8,27 +8,27 @@
         </div>
         <div class="modal-body">
             <h3 class="text-secondary h5 mb-3 fw-normal">Une question ? Besoin d'un conseil ?</h3>
-            <form class="text-secondary">
+            <form class="text-secondary" id="contact-form">
                 <div class="row mb-3">
                     <div class="col">
                         <label for="first-name" class="form-label">Prénom</label>
-                        <input type="text" class="form-control" id="first-name" name="first-name">
+                        <input type="text" class="form-control" id="first_name" name="first-name" required>
                     </div>
                     <div class="col">
                         <label for="last-name" class="form-label">Nom</label>
-                        <input type="text" class="form-control" id="last-name" name="last-name">
+                        <input type="text" class="form-control" id="last_name" name="last-name" required>
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label"><i class="bi bi-envelope-at"></i> Email</label>
-                    <input type="email" class="form-control" id="email">
+                    <input type="email" class="form-control" id="email" name="email" required>
                 </div>
                 <div class="mb-3">
                     <label for="message" class="form-label">Votre message</label>
-                    <textarea class="form-control" id="message" name="message" rows="4"></textarea>
+                    <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary fw-bold">Envoyer <i class="bi bi-send"></i></button>
-            </form>
+            </form>            
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal"><i class="bi bi-x-circle"></i> Fermer</button>
