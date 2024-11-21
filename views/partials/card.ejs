@@ -1,0 +1,22 @@
+<% if(typeof coffees !== 'undefined') { %>
+    <% for(const coffee of coffees) { %>
+        <div class="col">
+            <a href="/produit/<%= coffee.id %>" class="text-decoration-none text-secondary h-100">
+                <div class="card h-100 border-0 shadow text-center">                        
+                    <img src="/img/<%= coffee.reference %>.png" class="card-img-top" alt="<%= coffee.name %>">
+                    <div class="card-body">
+                        <h3 class="card-title text-secondary h5"><%= coffee.name %></h3>
+                        <div class="card-meta mb-2">
+                            <span class="badge bg-secondary py-2 px-3"><i class="bi bi-cup"></i> <%= coffee.taste_name %></span>
+                            <span class="badge bg-secondary py-2 px-3"><i class="bi bi-geo-alt"></i> <%= coffee.origin_name %></span>
+                        </div>
+                        <p class="card-text"><%= coffee.description %></p>
+                    </div>
+                    <div class="card-footer border-0 bg-transparent pb-4">
+                        <div class="btn btn-third text-primary fw-bold">Découvrir <i class="bi bi-arrow-right"></i></div>
+                    </div>
+                </div>                    
+            </a>
+        </div>
+    <% } %>
+<% } %>

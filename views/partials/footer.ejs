@@ -1,0 +1,43 @@
+<footer class="bg-secondary text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="footer-nav">
+                    <ul class="nav justify-content-center pt-3 pb-3">
+                        <li class="nav-item">
+                          <a class="nav-link" href="/boutique">La boutique</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="/notre-savoir-faire">Notre savoir-faire</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="/mentions-legales">Mentions légales</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="py-3 text-third small">
+                    © O’Coffee 2024
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Script Bootstrap -->
+<script src="/js/bootstrap.bundle.min.js"></script>
+
+<!-- Script principal -->
+<script src="/js/main.js"></script>
+
+<% if(currentPage === 'shop') { %>
+    <!-- Script map.js -->
+    <script src="/js/map.js"></script>
+<% } %>
+
+<% if(currentPage === 'catalog') { %>
+    <!-- Script map.js -->
+    <script src="/js/catalogFilters.js"></script>
+<% } %>
+
+</body>
+</html>

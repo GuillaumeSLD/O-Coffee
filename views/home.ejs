@@ -1,0 +1,44 @@
+<%- include('partials/header') %>
+
+    <main class="animate__animated animate__fadeIn">
+        <!-- Section Hero -->
+        <section class="container-fluid p-0">
+            <img class="w-100" src="/img/hero.jpg" alt="O'Coffe, votre boutique de café dans les Hauts-de-Cloques">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12 col-lg-8 col-xl-7">
+                        <div class="my-3">
+                            <h1 class="display-4 fw-bold text-secondary">Bienvenue sur O'Coffee</h1>
+                            <p class="lead">Votre boutique d'experts du café dans les Hauts-de-Cloques</p>
+                            <h2 class="text-secondary">Qui sommes-nous ?</h2>
+                            <p class="text-secondary">Jean et Jacques Pepper, deux frères passionnés par le café, sont les fondateurs de notre boutique. Avec une expertise approfondie et un amour profond pour cette délicieuse boisson, ils ont créé un espace où le café est célébré comme une expérience raffinée et inspirante.</p>
+                            <a href="/catalogue" class="btn btn-third btn-lg text-primary fw-bold shadow">Voir le catalogue <i class="bi bi-arrow-right"></i></a>
+                            <div class="w-100 vh-50 bg-primary"></div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-4 col-xl-5">
+                        <img src="/img/about.jpg" alt="Illustration" class="img-fluid rounded my-4 my-lg-5">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Nouveautés -->
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12"><h2 class="text-secondary mb-4 display-5 h-line"><img src="/img/grain.png" alt="Grain de café">Nouveautés</h2></div>
+                </div>
+            </div>
+            <div id="nouveautes" class="py-5 bg-third position-relative overflow-hidden">
+                <img class="container-fluid p-0 coffee-grain" src="/img/coffee-grain-fade.png" alt="Grains de café">
+                <div class="container">
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                        <%- include('partials/card') %>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,65 @@
+<div class="col position-relative">
+    <aside class="sticky-xl-top z-1 custom-top-offset pb-xl-1 rounded bg-third shadow sidebar">
+        <div class="offcanvas-xl offcanvas-start p-0 p-xl-3" id="filters" tabindex="-1" aria-labelledby="filtresLabel">
+            <div class="offcanvas-header border-bottom bg-third">
+                <span class="h5 offcanvas-title text-primary" id="filtresLabel"><i class="bi bi-filter-circle"></i> Filtres</span>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#filters" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body flex-column">
+                <p class="text-primary d-none d-xl-block h4 fw-bold mb-2"><i class="bi bi-filter-circle"></i> Filtres</p>
+                <hr class="d-none d-xl-block mt-1">
+                <div class="d-none d-xl-block">
+                    <div id="reset-filters" class="my-2 d-none">
+                        <span class="link-primary" style="cursor:pointer"><i class="bi bi-trash"></i> Supprimer</span>
+                        <hr class="mb-3">
+                    </div>
+                </div>
+                <form id="catalogFilters" method="GET" action="/catalogue">
+                    <!-- Filtre par origine -->
+                    <div class="filter mb-2">
+                        <p class="h5 text-secondary">Origine</p>
+                        <% filters.origins.forEach(filter => { %>
+                            <input type="checkbox" class="btn-check" id="origin-filter-<%= filter.origin %>" name="origin" value="<%= filter.origin %>">
+                            <label class="btn btn-sm btn-outline-primary shadow-none py-0 mb-2 me-2" for="origin-filter-<%= filter.origin %>"><%= filter.origin %></label>
+                        <% }); %>
+                        <hr>
+                    </div>
+
+                    <!-- Filtre par saveur -->
+                    <div class="filter mb-2">
+                        <p class="h5 text-secondary">Saveur</p>
+                        <% filters.tastes.forEach(filter => { %>
+                            <input type="checkbox" class="btn-check" id="taste-filter-<%= filter.taste %>" name="taste" value="<%= filter.taste %>">
+                            <label class="btn btn-sm btn-outline-primary shadow-none py-0 mb-2 me-2" for="taste-filter-<%= filter.taste %>"><%= filter.taste %></label>
+                        <% }); %>
+                        <hr>
+                    </div>
+
+                    <!-- Filtre par prix 
+                    <div class="filter mb-2">
+                        <p class="h5 text-secondary">Prix</p>
+                        <span>Prix minimum : <%= // filters.price_range.min_price %> €</span><br>
+                        <span>Prix maximum : <%= // filters.price_range.max_price %> €</span>
+                        <hr>
+                    </div>
+                    -->
+
+                    <!-- Filtre par disponibilité -->
+                    <div class="filter mb-2">
+                        <p class="h5 text-secondary">Disponibilité</p>
+                        <% filters.availability.forEach(filter => { %>
+                            <input type="checkbox" class="btn-check" id="availability-filter-<%= filter.availability %>" name="availability" value="<%= filter.availability %>">
+                            <label class="btn btn-sm btn-outline-primary shadow-none py-0 mb-2 me-2" for="availability-filter-<%= filter.availability %>"><%= filter.availability %></label>
+                        <% }); %>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Sidebar mobile footer -->
+            <div class="offcanvas-footer bg-third p-3 d-flex justify-content-center gap-2">
+                <button type="button" id="reset-filters-mobile" class="btn btn-outline-danger"><i class="bi bi-trash"></i> Supprimer</button>
+                <button type="button" id="filtersSubmit" class="btn btn-outline-success" data-bs-dismiss="offcanvas" data-bs-target="#filters" aria-label="Close"><i class="bi bi-check2-circle"></i> Appliquer</button>
+            </div>
+        </div>
+    </aside>
+</div>
