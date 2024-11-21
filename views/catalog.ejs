@@ -1,0 +1,20 @@
+<%- include('partials/header') %>
+
+    <main class="animate__animated animate__fadeIn">
+        <div class="container">
+            <div class="row my-4">
+                <%- include('partials/catalogFilters') %>
+                <section class="col-12 col-xl-8 col-xxl-9">
+                    <h1 class="text-secondary mb-4 display-5 h-line"><img src="/img/grain.png" alt="Grain de café">Catalogue</h1>
+                    <button class="d-xl-none btn btn-outline-primary btn-lg mb-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#filters">
+                        <i class="bi bi-filter-circle"></i> Filtrer
+                    </button>
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4 g-4 mb-5">
+                        <%- include('partials/card') %>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+<%- include('partials/footer') %>

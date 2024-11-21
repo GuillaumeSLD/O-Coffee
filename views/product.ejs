@@ -1,0 +1,44 @@
+<%- include('partials/header') %>
+
+    <main class="animate__animated animate__fadeIn">
+        <div class="container">
+            <div class="row my-5 align-items-center">
+                <div class="col-12 col-md-6 product-image">
+                    <img src="/img/<%= coffee.reference %>.png" alt="<%= coffee.name %>" class="rounded">
+                </div>
+                <div class="col-12 col-md-6">
+                    <h1 class="text-secondary mb-4"><%= coffee.name %></h1>
+                    <p class="lead text-secondary"><%= coffee.description %></p>
+                    <hr>
+                    <div class="d-flex flex-column text-secondary">
+                        <span>Référence : <%= coffee.reference %></span>
+                        <span>Origine : <span class="fw-bold"><i class="bi bi-geo-alt"></i> <%= coffee.origin_name %></span></span>
+                        <span>Prix au kilo : <span class="fw-bold text-primary"><%= coffee.price_kg %> €</span></span>
+                        <span>Caractéristique principale : <span class="fw-bold"><%= coffee.taste_name %></span></span>
+                        <span>Disponibilité :
+                            <span class="fw-bold <%= coffee.availability === 'Oui' ? 'text-success' : 'text-danger' %>">
+                                <%- coffee.availability === 'Oui' ? '<i class="bi bi-check-circle"></i> En stock' : '<i class="bi bi-x-circle"></i> En rupture' %>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="text-secondary h-line h3"><img src="/img/grain.png" alt="Grain de café">Ces cafés pourraient aussi vous plaire</h2>
+                </div>
+            </div>
+        </div>
+        <div id="related-products" class="position-relative">
+            <img class="container-fluid p-0 coffee-beans d-none d-xxl-block" src="/img/coffee-beans.png" alt="Grains de café">
+            <div class="container">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mt-1 mb-5">
+                    <%- include('partials/cardSimilarCoffees') %>
+                </div>
+            </div>
+        </div>
+    </main>
+
+<%- include('partials/footer') %>

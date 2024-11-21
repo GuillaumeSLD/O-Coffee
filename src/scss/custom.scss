@@ -1,0 +1,290 @@
+// Import du css des icones Bootstrap
+@import 'fonts/bootstrap-icons/bootstrap-icons.css';
+
+// Import de la lib animate.css
+@import 'animate.min.css';
+
+// Définition des variables Bootstrap
+$primary: #D74000;
+$secondary: #524745;
+$third: #F6F0E7;
+// Pour toi Alexis :
+$border-radius: 1rem;
+
+// Import de Bootstrap
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+// Définition d'une map avec des nouvelles couleurs
+$new_colors: (
+  "third": #F6F0E7
+);
+
+// Boucle pour générer des classes Bootstrap sur la nouvelle couleur
+@each $name, $color in $new_colors {
+  .btn-#{$name} {
+    &.btn {
+      background-color: $color;
+      border-color: $color;
+      color: #fff;
+
+      &:hover {
+        background-color: darken($color, 10%);
+        border-color: darken($color, 10%);
+      }
+
+      &:focus, &:active {
+        background-color: darken($color, 15%);
+        border-color: darken($color, 15%);
+      }
+    }
+  }
+
+  .bg-#{$name} {
+    background-color: $color !important;
+  }
+
+  .text-#{$name} {
+    color: $color !important;
+  }
+}
+
+// Font
+
+@font-face {
+    font-family: 'Archivo';
+    src: url('/fonts/Archivo-VariableFont_wdth,wght.ttf') format('truetype');
+    font-weight: 100 900; 
+    font-stretch: 75% 125%;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Archivo Italic';
+    src: url('/fonts/Archivo-Italic-VariableFont_wdth,wght.ttf') format('truetype');
+    font-weight: 100 900; 
+    font-stretch: 75% 125%;
+    font-style: italic;
+    font-display: swap; 
+  }
+
+body {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 400; /* Poids normal, mais tu peux ajuster si nécessaire */
+}
+  
+h1, h2, h3, h4, h5, h6, strong {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700; /* Poids gras */
+}
+  
+em, i {
+  font-family: 'Archivo Italic', sans-serif;
+  font-style: italic;
+  font-weight: 400; /* Poids normal en italique */
+}
+
+// Customisations
+
+.animate__animated {
+  animation-fill-mode: backwards;
+}
+
+.container {
+  max-width: 1500px;
+}
+
+main {
+  min-height: 77vh;
+}
+
+.container-fluid {
+  max-width: 1920px;
+}
+
+.nav-logo {
+    max-height: 45px;
+}
+
+.navbar-nav .nav-link {
+    color: $primary !important;
+    font-weight: 600;
+
+    &:hover,
+    &:focus {
+        color: darken($primary, 10%) !important;
+    }
+}
+
+.footer-nav {
+    border-bottom: 2px solid lighten($secondary, 5%);
+}
+
+.footer-nav .nav-link {
+    color: $third !important;
+    font-weight: 500;
+    &:hover,
+    &:focus {
+        color: darken($third, 10%) !important;
+    }
+}
+
+.nav-link.active {
+    font-weight: 900 !important;
+}
+  
+.card-img-top {
+    height: 250px;
+    object-fit: cover;
+}
+
+.coffee-grain {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  opacity: 0.7;
+  mix-blend-mode: color-burn;
+}
+
+
+@include media-breakpoint-up(xxl) {
+  #related-products {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .coffee-beans {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+
+  }
+
+  #related-products::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 5%, rgba(255, 255, 255, 0) 90%, rgba(255, 255, 255, 1) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+.h-line {
+  display:flex;
+  align-items: center;
+  white-space: pre-wrap;
+}
+
+.h-line:before, .h-line:after{
+  content:'';
+  flex:1;
+  border-bottom: solid 3px;
+  margin-top: auto;
+  margin-bottom: auto;
+  border-radius: $border-radius;
+}
+
+.h-line:before{
+  margin-right: 1.2rem;
+}
+
+.h-line:after{
+  margin-left: 1.2rem;
+}
+
+.h-line-1:before, .h-line-1:after{
+  border-bottom: solid 1px;
+}
+
+.h-line-2:before, .h-line-2:after{
+  border-bottom: solid 2px;
+}
+
+.h-line-3:before, .h-line-3:after{
+  border-bottom: solid 3px;
+}
+
+.h-line-4:before, .h-line-4:after{
+  border-bottom: solid 4px;
+}
+
+.h-line-5:before, .h-line-5:after{
+  border-bottom: solid 5px;
+}
+
+// Page produit
+
+.product-image {
+  height: 400px;
+  overflow: hidden;
+}
+
+.product-image img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.sidebar {
+  top: 12vh !important;
+}
+
+@include media-breakpoint-up(xl) {
+  .sidebar {
+      height: calc(98vh - var(--gap-between-top)) !important;
+      max-height: calc(98vh - var(--nav-height));
+  }
+}
+
+// Top button
+
+#scrollToTopBtn {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 1;
+}
+
+#map {
+  height: 41.5vh;
+}
+
+// Scrollbar
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+  border-radius: 10px;
+}
+  
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+  border: 3px solid #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+::-webkit-scrollbar-horizontal {
+  height: 10px;
+}
+
+::-webkit-scrollbar-vertical {
+  width: 10px;
+}
