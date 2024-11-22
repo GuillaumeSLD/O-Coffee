@@ -77,36 +77,63 @@ const mainController = {
   },
 
   async contactForm(req, res) {
-    const { first_name, last_name, email, message } = req.body;
+    const { first_name, last_name, email, message, recaptcha_response } = req.body;
 
     // Vérifier que tous les champs sont présents
-    if (!first_name || !last_name || !email || !message) {
+    if (!first_name || !last_name || !email || !message || !recaptcha_response) {
+        console.log('Des champs sont manquants');
         return res.status(400).json({ error: 'Tous les champs sont requis.' });
     }
 
-    try {
-      const response = await emailjs.send(
-          process.env.EMAILJS_SERVICE_ID,
-          process.env.EMAILJS_TEMPLATE_ID,
-          {
-              first_name,
-              last_name,
-              email,
-              message,
-          },
-          {
-              publicKey: process.env.EMAILJS_PUBLIC_KEY,
-              privateKey: process.env.EMAILJS_PRIVATE_KEY,
-          }
-      );
+    const verifyUrl = `https://www.google.com/recaptcha/api/siteverify`;
 
-      // Si la réponse est correcte, vous retournez un succès
-      return res.status(200).json({ message: 'E-mail envoyé avec succès.' });
+    try {
+        // Envoi de la requête de vérification au serveur de Google
+        const captchaResponse = await fetch(verifyUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                secret: process.env.RECAPTCHA_SECRET_KEY, // Votre clé secrète reCAPTCHA
+                response: recaptcha_response,  // Le token reCAPTCHA
+            }),
+        });
+
+        // Récupération de la réponse JSON de Google
+        const captchaData = await captchaResponse.json();
+
+        // Si le reCAPTCHA n'est pas validé
+        if (!captchaData.success) {
+            console.log('Échec validation reCAPTCHA:', captchaData['error-codes']);
+            return res.status(400).json({ error: 'Échec de la vérification du reCAPTCHA.' });
+        }
+
+        // Si reCAPTCHA est validé, procéder à l'envoi de l'email avec le token reCAPTCHA
+        const response = await emailjs.send(
+            process.env.EMAILJS_SERVICE_ID,
+            process.env.EMAILJS_TEMPLATE_ID,
+            {
+                first_name, 
+                last_name, 
+                email, 
+                message,
+                'g-recaptcha-response': recaptcha_response, // Envoyer le token valide
+            },
+            { 
+                publicKey: process.env.EMAILJS_PUBLIC_KEY,
+                privateKey: process.env.EMAILJS_PRIVATE_KEY,
+            }
+        );
+
+        return res.status(200).json({ message: 'E-mail envoyé avec succès.' });
     } catch (err) {
-      console.error('Erreur lors de l\'envoi:', err);
-      return res.status(500).json({ error: 'Erreur lors de l\'envoi de l\'e-mail.' });
+        console.error('Erreur lors de la vérification ou de l\'envoi:', err);
+        return res.status(500).json({ error: 'Erreur lors de l\'envoi de l\'e-mail.' });
     }
-  }
+
+}
+
 };
 
 export default mainController;
