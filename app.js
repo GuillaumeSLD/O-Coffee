@@ -3,10 +3,14 @@ import 'dotenv/config';
 import router from './router.js'; 
 import metaDescMw from './middlewares/metaDescMw.js';
 import currentPageMw from './middlewares/currentPageMw.js';
+import bodyParser from 'body-parser';
 
 const app = express();
 
 app.use(express.static('public'));
+
+// Middleware pour analyser les requêtes JSON
+app.use(bodyParser.json());
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');

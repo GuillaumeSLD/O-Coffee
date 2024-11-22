@@ -21,4 +21,7 @@ router.get('/notre-savoir-faire', mainController.knowHow);
 // Page mentions légales
 router.get('/mentions-legales', mainController.legalNotice);
 
+// Route de traitement du formulaire de contact
+router.post('/api/send-email', mainController.contactForm)
+
 export default router;

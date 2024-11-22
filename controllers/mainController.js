@@ -1,5 +1,6 @@
 import filtersDataMapper from "../models/filtersDataMapper.js";
 import mainDataMapper from "../models/mainDataMapper.js";
+import emailjs, { EmailJSResponseStatus } from '@emailjs/nodejs';
 
 const mainController = {
   async homePage(req, res) {
@@ -11,6 +12,7 @@ const mainController = {
       res.status(500).send(`An error occured with the database :\n${error.message}`);
     }
   },
+
   async catalogPage(req, res) {
     try {
       // Récupération des produits
@@ -47,6 +49,7 @@ const mainController = {
       res.status(500).send(`An error occured with the database :\n${error.message}`);
     }
   },
+
   async productPage(req, res) {
     try {
         const coffeeId = parseInt(req.params.coffeeId, 10);
@@ -60,14 +63,49 @@ const mainController = {
       res.status(500).send(`An error occured with the database :\n${error.message}`);
     }
   },
+
   shopPage(req, res) {
     res.render('shop', { title: "Boutique - O'Coffee" });
   },
+
   knowHow(req, res) {
     res.render('knowHow', { title: "Notre savoir-faire - O'Coffee" });
   },
+
   legalNotice(req, res) {
     res.render('legalNotice', { title: "Mentions légales - O'Coffee" });
+  },
+
+  async contactForm(req, res) {
+    const { first_name, last_name, email, message } = req.body;
+
+    // Vérifier que tous les champs sont présents
+    if (!first_name || !last_name || !email || !message) {
+        return res.status(400).json({ error: 'Tous les champs sont requis.' });
+    }
+
+    try {
+      const response = await emailjs.send(
+          process.env.EMAILJS_SERVICE_ID,
+          process.env.EMAILJS_TEMPLATE_ID,
+          {
+              first_name,
+              last_name,
+              email,
+              message,
+          },
+          {
+              publicKey: process.env.EMAILJS_PUBLIC_KEY,
+              privateKey: process.env.EMAILJS_PRIVATE_KEY,
+          }
+      );
+
+      // Si la réponse est correcte, vous retournez un succès
+      return res.status(200).json({ message: 'E-mail envoyé avec succès.' });
+    } catch (err) {
+      console.error('Erreur lors de l\'envoi:', err);
+      return res.status(500).json({ error: 'Erreur lors de l\'envoi de l\'e-mail.' });
+    }
   }
 };
 
