@@ -49,7 +49,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Vérification du reCAPTCHA
         if (!formData.recaptcha_response) {
-            alert("Veuillez valider le reCAPTCHA.");
+            alert("Veuillez confirmer que vous n'êtes pas un robot.");
+            // Maj de l'UI du bouton
+            contactFormSubmitBtn.innerHTML = contactFormSubmitBtnText;
             return;
         }
 
