@@ -7,6 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
+    "start": "node app.js",
     "dev": "node --watch app.js",
     "build-css": "sass --load-path=node_modules src/scss/custom.scss public/css/style.css --no-source-map",
     "watch-css": "sass --watch --load-path=node_modules src/scss/custom.scss public/css/style.css"
